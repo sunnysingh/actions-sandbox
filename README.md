@@ -10,7 +10,7 @@ The purpose of this `actions-sandbox` repository is to provide a place to test o
 
 ## Problem #1: Auto Merging Pull Requests (PRs)
 
-If you want to automatically create and merge PRs via some CI/CD process, then you will want to figure out how to automatically create those PRs, automatically approve them, and automatically merge them in a way so that existing workflows are still trigerred (e.g. a deployment when a PR is merged to the main branch).
+If you want to automatically create and merge PRs via some CI/CD process, then you will want to figure out how to automatically create those PRs, automatically approve them, and automatically merge them in a way so that existing workflows are still triggered (e.g. a deployment when a PR is merged to the main branch).
 
 This repository has the following workflows to demonstrate this:
 
@@ -30,4 +30,6 @@ You can then configure the PR to be automatically merged once all checks pass:
 gh pr merge $(gh pr view --json number --jq .number) --auto --rebase
 ```
 
-Note that these `gh` commands can ran in GitHub Actions or another CI/CD platform to automatically create PRs. Make sure to authenticate via a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to avoid breaking existing workflows.
+For automatic merges using the `--auto` flag, you will also need to [enable auto-merge in your repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/automatically-merging-a-pull-request#enabling-auto-merge).
+
+The GitHub CLI is [automatically installed in GitHub-hosted runners](https://docs.github.com/en/actions/using-workflows/using-github-cli-in-workflows), which enables you to automatically create PRs via GitHub Actions. Make sure to authenticate via a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to avoid breaking existing workflows.
