@@ -1,0 +1,13 @@
+name: Approve Automated Pull Requests
+on:
+  pull_request:
+    types:
+      - auto_merge_enabled
+jobs:
+  auto-approve:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hmarr/auto-approve-action@v2.2.1
+        if: github.event.label.name == 'automated'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
