@@ -5,7 +5,7 @@ on:
       - auto_merge_enabled
 jobs:
   auto-approve:
-    if: contains(github.event.pull_request.labels.*.name, 'automated') && github.event.pull_request.user.login == 'machine-user'
+    if: contains(github.event.pull_request.labels.*.name, 'automated') && github.event.pull_request.user.login == 'sunnysingh'
     runs-on: ubuntu-latest
     steps:
       - name: "Author Info"
