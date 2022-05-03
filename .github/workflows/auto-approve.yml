@@ -5,11 +5,11 @@ on:
       - auto_merge_enabled
 jobs:
   auto-approve:
+    if: contains(github.event.pull_request.labels.*.name, 'automated') && github.event.pull_request.user.login == 'machine-user'
     runs-on: ubuntu-latest
     steps:
       - name: "Author Info"
         run: echo "This PR is opened by @${{ github.event.pull_request.user.login }}."
       - uses: hmarr/auto-approve-action@v2.2.1
-        if: contains(github.event.pull_request.labels.*.name, 'automated') && github.event.pull_request.user.login == 'sunnysingh'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
